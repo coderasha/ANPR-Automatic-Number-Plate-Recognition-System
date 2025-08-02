@@ -1,0 +1,6 @@
+ultralytics==8.0.20
+opencv-python
+numpy
+easyocr
+Pillow
+streamlit
