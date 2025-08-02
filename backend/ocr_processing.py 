@@ -1,0 +1,13 @@
+import easyocr  
+import re  
+
+reader = easyocr.Reader(['en'])  
+
+def validate_indian_plate(text):  
+    pattern = r'^[A-Z]{2}\d{1,2}[A-Z]{0,2}\d{4}$'  # e.g., AP31Z0250  
+    return re.match(pattern, text)  
+
+def extract_text(enhanced_img):  
+    results = reader.readtext(enhanced_img)  
+    plate_text = "".join([res[1] for res in results]).replace(" ", "")  
+    return plate_text if validate_indian_plate(plate_text) else "Unknown"  
